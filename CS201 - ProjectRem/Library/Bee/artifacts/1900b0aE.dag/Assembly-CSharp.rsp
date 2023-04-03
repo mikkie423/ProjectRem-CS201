@@ -348,9 +348,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/ClimbingController.cs"
+"Assets/Scripts/DetectorController.cs"
 "Assets/Scripts/MoveTheCamera.cs"
+"Assets/Scripts/PickupController.cs"
 "Assets/Scripts/PlayerCameraController.cs"
 "Assets/Scripts/PlayerMovementController.cs"
+"Assets/Scripts/PortalController.cs"
 -langversion:9.0
 
 /deterministic

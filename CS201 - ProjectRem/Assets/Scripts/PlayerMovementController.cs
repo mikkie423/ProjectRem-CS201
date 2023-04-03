@@ -39,6 +39,7 @@ public class PlayerMovementController : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     public bool grounded;
+    public RaycastHit groundHit;
 
     [Header("Slope Handling")]
     public float maxSlopeAngle;
@@ -90,6 +91,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         // Ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.01f, whatIsGround);
+
 
         // Balance check
         balancing = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.02f, whatIsBalanceBeam);
