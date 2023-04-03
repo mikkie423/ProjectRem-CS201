@@ -67,7 +67,7 @@ Experience platforming and scaling objects from a brand new, tiny, furry perspec
 
 |  Constraint | Description |
 | ------------- | ------------- |
-| ***Project duration:*** | 8 weeks |
+|***Project duration:*** | 8 weeks |
 |***Alpha due:***|  21/04/2023 |
 |***Engine:*** | Unity Engine - 3D Core, v2021.3.20f1 |
 |***Target Platforms:*** | Windows PC |
@@ -76,7 +76,8 @@ Experience platforming and scaling objects from a brand new, tiny, furry perspec
 |***Budget:*** | $1200.00|
 
 
-***Target Audience:***
+### Target Audience:
+
 My target audience would be both male and female casual PC gamers, ages 15-30 years old. This is because both males and females would enjoy playing as a kitten and trying to get a high score, however, the males may be more drawn to attacking the rats as they can prefer fighting and action wave-based rounds; the females may be more drawn towards defending the fields in other ways rather than just attacking every rat. The age range is because there is a small amount of fighting the rats and so younger children won’t be able to play and as most people get older, they can lose interest in games in favour of other things like settling down with a family and being busy with careers.
 
 The income of the demographic would be the lower/middle class as people with more income will tend to want to spend more to prove they have money. The lower and middle class will tend to buy what is needed and what is wanted to help pass the time. The target audience will probably be full-time students that may be working a part-time job or people with repetitive full-time jobs such as office, manufacturing, or retail which get very boring and monotonous driving the target audience towards wanting to find some excitement or escapism in gaming.
@@ -86,8 +87,9 @@ The income of the demographic would be the lower/middle class as people with mor
 
 ## Gameplay Overview
 
+*Act like a kitten to find and obtain the treats.*
+
 ### Core Functionality / Mechanisms
-Act like a kitten to find and obtain the treats.
 
 -	Walk forward, backward, left, and right in a 3D space [WASD/Arrow Keys]
 -	Sprint forward, backward, left, and right in a 3D space [WASD/Arrow Keys while holding Shift]
