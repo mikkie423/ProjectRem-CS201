@@ -3,20 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PickupItem
+  - Plant
+  - Farm
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Ground
+  - Garden
+  - Plant
   - Wall
   - BalanceBeam
-  - 
+  - Enemy
   - Player
-  - 
   - 
   - 
   - 
