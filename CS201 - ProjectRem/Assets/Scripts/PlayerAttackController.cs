@@ -28,15 +28,19 @@ public class PlayerAttackController : MonoBehaviour
 
         if (enemyInAttackRange)
         {
-            if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange, whatIsEnemy))
+            Physics.Raycast(transform.position, transform.forward, out hit, attackRange, whatIsEnemy);
+            Debug.DrawRay(transform.position, transform.forward, Color.red);
+
+            if (hit.rigidbody.gameObject.CompareTag("Enemy"))
             {
-                Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
-                if (hit.rigidbody.gameObject.CompareTag("Enemy"))
-                {
-                    if (Input.GetKeyDown(leftAttack)) LeftAttack();
-                    if (Input.GetKeyDown(rightAttack)) RightAttack();
-                }
+                if (Input.GetKeyDown(leftAttack)) LeftAttack();
+                if (Input.GetKeyDown(rightAttack)) RightAttack();
             }
+            else 
+            {
+                Debug.Log("Stop hitting, Not an enemy");
+            }
+
         }
 
     }
@@ -59,7 +63,10 @@ public class PlayerAttackController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+       // Gizmos.color = Color.red;
+       // Gizmos.DrawRay(transform.position, transform.f);
+
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     [Header("Movement")]
+    public bool canMove;
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
@@ -66,7 +67,8 @@ public class PlayerMovementController : MonoBehaviour
         sprinting,
         balancing,
         crouching,
-        air
+        air,
+        paused
     }
 
     private void Start()
@@ -77,6 +79,8 @@ public class PlayerMovementController : MonoBehaviour
         readyToJump = true;
 
         startYScale = transform.localScale.y;
+
+        canMove = true;
     }
 
     public void Teleport(Vector3 position, Quaternion rotation)
@@ -109,7 +113,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if(canMove)
+            MovePlayer();
     }
 
     private void MyInput()
@@ -118,7 +123,7 @@ public class PlayerMovementController : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // When to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded && !isCrouching)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded && !isCrouching && canMove)
         {
             readyToJump = false;
 
@@ -146,6 +151,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void StateHandler()
     {
+        if (!canMove)
+        {
+            state = MovementState.paused;
+            moveSpeed = 0;
+        }
         //Mode - Balancing
         if (balancing)
         {
