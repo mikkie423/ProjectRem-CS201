@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     public NavMeshAgent agent;
     public float health;
+    public GameObject mindmapIcon;
 
 
     [Header("Attacking")]
@@ -26,6 +27,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mindmapIcon.transform.position = transform.position;
             GameObject[] plants = GameObject.FindGameObjectsWithTag("Plant");
             if (plants.Length > 0)
             {
@@ -33,7 +35,8 @@ public class EnemyController : MonoBehaviour
                 closestPlant = plants[0];
                 foreach (GameObject plant in plants)
                 {
-                    if (Vector3.Distance(plant.transform.position, transform.position) < Vector3.Distance(closestPlant.transform.position, transform.position))
+                plant.TryGetComponent<PlantController>(out var p);
+                if (Vector3.Distance(plant.transform.position, transform.position) < Vector3.Distance(closestPlant.transform.position, transform.position) && !p.beingAttacked)
                     {
                         closestPlant = plant;
                     }

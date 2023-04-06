@@ -31,14 +31,17 @@ public class PlayerAttackController : MonoBehaviour
             Physics.Raycast(transform.position, transform.forward, out hit, attackRange, whatIsEnemy);
             Debug.DrawRay(transform.position, transform.forward, Color.red);
 
-            if (hit.rigidbody.gameObject.CompareTag("Enemy"))
-            {
-                if (Input.GetKeyDown(leftAttack)) LeftAttack();
-                if (Input.GetKeyDown(rightAttack)) RightAttack();
-            }
-            else 
-            {
-                Debug.Log("Stop hitting, Not an enemy");
+            if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange, whatIsEnemy)) {
+
+                if (hit.rigidbody.gameObject.CompareTag("Enemy"))
+                {
+                    if (Input.GetKeyDown(leftAttack)) LeftAttack();
+                    if (Input.GetKeyDown(rightAttack)) RightAttack();
+                }
+                else
+                {
+                    Debug.Log("Stop hitting, Not an enemy");
+                }
             }
 
         }

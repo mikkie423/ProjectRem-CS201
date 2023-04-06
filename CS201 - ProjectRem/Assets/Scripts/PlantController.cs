@@ -20,6 +20,7 @@ public class PlantController : MonoBehaviour
         {
             planthealth -= damage;
             if (planthealth == 0) Invoke(nameof(DestroyPlant), 0.5f);
+            beingAttacked = false;
         }
     }
 

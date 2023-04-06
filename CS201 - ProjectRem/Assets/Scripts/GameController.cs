@@ -8,11 +8,12 @@ public class GameController : MonoBehaviour
 {
     public TextMeshProUGUI timerUI;
     public TextMeshProUGUI pointsUI;
-    public GameObject[] gardens;
+    public GameObject[] plants;
     public float timeRemaining = 300;
     public string timerText;
     private bool timerIsRunning = false;
     private int points;
+    public HealthBar healthBar;
 
     [Header("Cameras")]
     public GameObject playerCamHolder;
@@ -26,7 +27,9 @@ public class GameController : MonoBehaviour
         mindMapCamHolder.SetActive(false);
 
         timerIsRunning = true;
-        gardens = GameObject.FindGameObjectsWithTag("Farm");
+        plants = GameObject.FindGameObjectsWithTag("Plant");
+        healthBar.setMaxHealth(plants.Length);
+
     }
 
     // Update is called once per frame
@@ -44,11 +47,12 @@ public class GameController : MonoBehaviour
         timerUI.text = DisplayTimer(timeRemaining);
         pointsUI.text = points.ToString();
 
-        gardens = GameObject.FindGameObjectsWithTag("Farm");
+        plants = GameObject.FindGameObjectsWithTag("Plant");
 
         if (timerIsRunning)
         {
-            if (gardens.Length < 1) GameOver();
+            if (plants.Length < 1) GameOver();
+            else if(plants.Length < healthBar.currentHealth()) healthBar.setHealth(plants.Length);
             else if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;

@@ -24,8 +24,8 @@ public class RatSpawner : MonoBehaviour
     }
     private void Update()
     {
-        GameObject[] ratsTotal = GameObject.FindGameObjectsWithTag("Enemy");
-        countRats = ratsTotal.Length;
+/*        GameObject[] ratsTotal = GameObject.FindGameObjectsWithTag("Enemy");
+        countRats = ratsTotal.Length;*/
         targetTime -= Time.deltaTime;
         if (targetTime <= 0 && countRats < maxRats)
         {
