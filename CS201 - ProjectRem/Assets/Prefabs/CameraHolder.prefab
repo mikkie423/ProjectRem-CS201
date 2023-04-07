@@ -768,6 +768,8 @@ MonoBehaviour:
   orientation: {fileID: 0}
   xRotation: 0
   yRotation: 0
+  maxYAngle: 40
+  maxXAngle: 360
 --- !u!1 &5799068642984068417
 GameObject:
   m_ObjectHideFlags: 0

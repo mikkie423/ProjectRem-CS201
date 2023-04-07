@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: d59461f6ec859ab4bbfd427903bbf1af
+  - enabled: 1
     path: Assets/Scenes/EnemyAITest.unity
     guid: 06bc96a007301b94593478723fed6eac
+  - enabled: 1
+    path: Assets/Scenes/PauseMenu.unity
+    guid: 21fd3f0aec15c7a4f91fece6a0359a08
   - enabled: 1
     path: Assets/Scenes/WinGame.unity
     guid: 831c1a0c5f9110d4c95e3f67a0a99490
   - enabled: 1
     path: Assets/Scenes/LoseGame.unity
-    guid: 19906b9ab2cec104a8fbaf42a93f7f3b
+    guid: 4749779927980f64da4b76f7c8f8cb49
   m_configObjects: {}

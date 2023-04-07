@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2197126242483907786}
   - component: {fileID: 2197126242483907787}
   - component: {fileID: 2197126242483907766}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rat Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,6 +13,10 @@ public class PlayerCameraController : MonoBehaviour
     public float xRotation;
     public float yRotation;
 
+    public float maxYAngle;
+    public float maxXAngle;
+
+
 
     // Start is called before the first frame update
     void Awake()
@@ -21,15 +25,25 @@ public class PlayerCameraController : MonoBehaviour
         Cursor.visible = false;
     }
 
+
+    private void Start()
+    {
+        yRotation = 0;
+        xRotation = 0;
+    }
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.unscaledDeltaTime * sensX;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.unscaledDeltaTime * sensY;
+
+       
 
         xRotation += mouseX;
 
         yRotation -= mouseY;
+
+        yRotation = Mathf.Clamp(yRotation, -maxYAngle, maxYAngle);
 
         //rotate cam and orientation
         transform.localRotation = Quaternion.Euler(yRotation, xRotation, 0);

@@ -7,6 +7,8 @@ public class RatSpawner : MonoBehaviour
     public GameObject ratPrefab;
     public int maxRats;
     public int countRats;
+    public GameObject[] spawners;
+    public Transform enemyParent;
 
     //public float spawnLimitZ;
     public float spawnLimitX;
@@ -21,15 +23,18 @@ public class RatSpawner : MonoBehaviour
     void Start()
     {
         transform.localScale += new Vector3(spawnLimitX, 1, spawnLimitZ);
+        spawners = GameObject.FindGameObjectsWithTag("Spawner");
     }
     private void Update()
     {
-/*        GameObject[] ratsTotal = GameObject.FindGameObjectsWithTag("Enemy");
-        countRats = ratsTotal.Length;*/
+        //GameObject[] ratsTotal = GameObject.FindGameObjectsWithTag("Enemy");
         targetTime -= Time.deltaTime;
-        if (targetTime <= 0 && countRats < maxRats)
+        if (targetTime <= 0)
         {
-            SpawnRandomRat();
+            if (countRats < maxRats)
+            {
+                SpawnRandomRat();
+            }
             targetTime = Random.Range(3, 6);
         }
 
@@ -41,9 +46,11 @@ public class RatSpawner : MonoBehaviour
         Vector3 spawnPos = new Vector3(Random.Range((transform.position.x + spawnLimitX/2), (transform.position.x - spawnLimitX / 2)), 1, Random.Range((transform.position.z + spawnLimitZ / 2), (transform.position.z - spawnLimitZ / 2)));
         currentSpawnPoint = spawnPos;
 
-
         // instantiate enemy at random spawn location
-        Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation);
+        GameObject clonedRat = Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation);
+        clonedRat.transform.SetParent(enemyParent);
+        clonedRat.TryGetComponent<EnemyController>(out var enemyController);
+        enemyController.spawner = this.gameObject;
         countRats++;
     }
 

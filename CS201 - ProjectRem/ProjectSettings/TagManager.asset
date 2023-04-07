@@ -9,6 +9,9 @@ TagManager:
   - Farm
   - Enemy
   - MindMap
+  - Spawner
+  - ItemsParent
+  - ItemContainer
   layers:
   - Default
   - TransparentFX
@@ -22,9 +25,9 @@ TagManager:
   - BalanceBeam
   - Enemy
   - Player
-  - 
+  - Spawner
   - MindMap
-  - 
+  - MenuItem
   - 
   - 
   - 

@@ -7,17 +7,22 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public TextMeshProUGUI timerUI;
-    public TextMeshProUGUI pointsUI;
-    public GameObject[] plants;
-    public float timeRemaining = 300;
+    public TextMeshProUGUI killsUI;
+    public static GameObject[] plants;
+    public static int startingPlantsNum;
+    public float timeRemaining;
     public string timerText;
     private bool timerIsRunning = false;
-    private int points;
+    public static int kills;
     public HealthBar healthBar;
 
     [Header("Cameras")]
     public GameObject playerCamHolder;
     public GameObject mindMapCamHolder;
+
+    [Header("Scripts")]
+    public PlayerAttackController playerAttackController;
+    public PlayerMovementController playerMovementController;
 
 
     // Start is called before the first frame update
@@ -29,23 +34,28 @@ public class GameController : MonoBehaviour
         timerIsRunning = true;
         plants = GameObject.FindGameObjectsWithTag("Plant");
         healthBar.setMaxHealth(plants.Length);
-
+        startingPlantsNum = plants.Length;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            PauseMenu();
+        }
+
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             SwapCams();
         }
 
-        TryGetComponent<PlayerAttackController>(out var playerAttackController);
-        points = playerAttackController.totalKills;
+        kills = playerAttackController.totalKills;
 
 
         timerUI.text = DisplayTimer(timeRemaining);
-        pointsUI.text = points.ToString();
+        killsUI.text = kills.ToString();
 
         plants = GameObject.FindGameObjectsWithTag("Plant");
 
@@ -63,9 +73,9 @@ public class GameController : MonoBehaviour
                 timerIsRunning = false;
                 timeRemaining = 0;
 
-                if (points > 0)
+                if (kills > 0)
                     WinGame();
-                else if ( points < 1)
+                else if ( kills < 1)
                     GameOver();
             }
         }
@@ -75,15 +85,14 @@ public class GameController : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("GAME OVER, YOU LOSE!");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
     }
 
     private void WinGame()
     {
-        TryGetComponent<PlayerAttackController>(out var PlayerAttackController);
-        points = PlayerAttackController.totalKills;
-        Debug.Log("YOU WIN, GOOD JOB! You got " + points + " total points.");
-        SceneManager.LoadScene(1);
+        kills = playerAttackController.totalKills;
+        Debug.Log("YOU WIN, GOOD JOB! You got " + kills + " total kills.");
+        SceneManager.LoadScene(3);
     }
 
     private string DisplayTimer(float timeToDisplay)
@@ -96,29 +105,36 @@ public class GameController : MonoBehaviour
 
     private void SwapCams()
     {
-        TryGetComponent<PlayerMovementController>(out var movementController);
         float tempWalkSpeed;
-        tempWalkSpeed = movementController.walkSpeed;
+        tempWalkSpeed = playerMovementController.walkSpeed;
 
         if (playerCamHolder.activeInHierarchy)
         {
-            Debug.Log("Tab has been pressed and playerCam is active, time to change to mindmapCam.");
             playerCamHolder.SetActive(false);
             mindMapCamHolder.SetActive(true);
-            Debug.Log("P2M - Cameras have been changed");
-            movementController.canMove = false;
+            playerMovementController.canMove = false;
         }
         else if (mindMapCamHolder.activeInHierarchy)
         {
-            movementController.canMove = true;
-            Debug.Log("Tab has been pressed and mindmapCam is active, time to change to playerCam.");
+            playerMovementController.canMove = true;
             mindMapCamHolder.SetActive(false);
             playerCamHolder.SetActive(true);
-            Debug.Log("M2P - Cameras have been changed");
 
         }
-        else
-            Debug.Log("Tab has been pressed and no cam is active...WHHHHAAATTTTT??!?!?!?!?");
 
+    }
+
+    private void PauseMenu()
+    {
+        if (SceneManager.sceneCount > 1)
+        {
+            SceneManager.UnloadSceneAsync(2);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        }
     }
 }

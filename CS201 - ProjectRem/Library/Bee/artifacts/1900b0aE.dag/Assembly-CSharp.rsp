@@ -349,12 +349,16 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/HealthBar.cs"
 "Assets/Scripts/ClimbingController.cs"
 "Assets/Scripts/DetectorController.cs"
+"Assets/Scripts/EndGameController.cs"
 "Assets/Scripts/EnemyController.cs"
 "Assets/Scripts/GameController.cs"
 "Assets/Scripts/GardenController.cs"
+"Assets/Scripts/HealthBar.cs"
+"Assets/Scripts/LoseGame.cs"
+"Assets/Scripts/MenuController.cs"
+"Assets/Scripts/MindMapController.cs"
 "Assets/Scripts/MoveTheCamera.cs"
 "Assets/Scripts/PickupController.cs"
 "Assets/Scripts/PlantController.cs"
@@ -362,7 +366,9 @@
 "Assets/Scripts/PlayerCameraController.cs"
 "Assets/Scripts/PlayerMovementController.cs"
 "Assets/Scripts/PortalController.cs"
+"Assets/Scripts/RatController.cs"
 "Assets/Scripts/RatSpawner.cs"
+"Assets/Scripts/WinGame.cs"
 -langversion:9.0
 
 /deterministic

@@ -133,7 +133,7 @@ MonoBehaviour:
   itemContainer: {fileID: 0}
   playerCam: {fileID: 0}
   itemsParent: {fileID: 0}
-  mass: 0.5
+  mass: 0.1
   pickupRange: 5
   pickupTime: 0.5
   dropForwardForce: 2

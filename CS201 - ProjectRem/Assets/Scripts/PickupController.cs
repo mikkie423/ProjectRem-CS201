@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickupController : MonoBehaviour
 {
     public Rigidbody rb;
-    public SphereCollider coll;
+    public Collider coll;
     public Transform player, itemContainer, playerCam, itemsParent;
 
     public float mass;
@@ -17,6 +17,10 @@ public class PickupController : MonoBehaviour
 
     private void Start()
     {
+        itemContainer = GameObject.FindGameObjectWithTag("ItemContainer").transform;
+        playerCam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        itemsParent = GameObject.FindGameObjectWithTag("ItemsParent").transform;
+
         //Setup
         if (!equipped)
         { 
@@ -39,13 +43,14 @@ public class PickupController : MonoBehaviour
         //Drop if eqippped and "Q" is pressed
         else if(equipped && Input.GetKeyDown(KeyCode.E)) Drop();
     }
-    private void PickUp()
+    public void PickUp()
     {
+        Debug.Log("Attempting to pick up " + this.name);
         equipped = true;
         slotFull = true;
 
         //Make item a child of the camera and move it to default position
-        transform.SetParent(itemContainer);
+        this.transform.SetParent(itemContainer);
         transform.localPosition = Vector3.zero;
         rb.freezeRotation = true;
         transform.localScale = new Vector3(.3f, .3f, .3f);

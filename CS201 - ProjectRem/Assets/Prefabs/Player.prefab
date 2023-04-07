@@ -179,6 +179,7 @@ MonoBehaviour:
   plants: []
   timeRemaining: 300
   timerText: 
+  points: 0
   healthBar: {fileID: 0}
   playerCamHolder: {fileID: 0}
   mindMapCamHolder: {fileID: 0}
